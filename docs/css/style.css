@@ -1,38 +1,36 @@
-#new-area div.contenido div {
-  background: #1f91ff !important;
-  border: solid 2px;
-  padding: 1em;
-  color: white;
+body {
+  height: 100%;
+}
+.container {
+  display: grid;
+  text-align: center;
+  gap: 10px;
+  grid-template-areas:
+    "numPartidas maxPuntos puntos cronometro"
+    "baraja baraja baraja baraja";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.reloj {
+  display: inline;
 }
 
-.contenido {
-  box-sizing: border-box;
-  display: -ms-flexbox;
-  display: -webkit-box;
-  display: flex;
-  -ms-flex: 0 1 auto;
-  -webkit-box-flex: 0;
-  flex: 0 1 auto;
-  -ms-flex-direction: row;
-  -webkit-box-orient: horizontal;
-  flex-direction: row;
-  -ms-flex-wrap: wrap;
-  flex-wrap: no-wrap;
-  padding: 5px;
+.modal-content {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 5px;
+  text-align: center;
+  display: grid;
+}
+.modal-header {
+  padding-top: 3%;
+  background-color: whitesmoke;
+  font-family: "good-times";
+  font-weight: bold;
 }
 
-.columa4 {
-  flex-basis: 33.3%;
-  max-width: 33.3%;
-  padding: -32px;
-  margin: 5px;
-  /* font-size: xxx-large; */
-  size: auto;
-  height: 8em;
-
-  width: 30px;
-}
-
-#tabla {
-  width: 50%;
+.modal-body {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 20px;
+  padding: 3%;
 }

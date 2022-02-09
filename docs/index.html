@@ -12,6 +12,10 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/600411bb61.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Memory</title>
   </head>
   <body>
@@ -63,97 +67,46 @@
             <a class="nav-link disabled" href="#">Disabled</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input
-            class="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            Search
-          </button>
-        </form>
       </div>
     </nav>
     <!-- fin navbar -->
+    <!-- contenedor -->
+    <div class="container">
+      <div id="numPartidas" class="numPartidas">
+        Partida nº: <span id="numPartidasValue"></span>
+      </div>
+      <div id="maxScore" class="maxPuntos">
+        Puntuación Max.: <span id="puntosMaxValue">0</span>
+      </div>
+      <div id="score" class="puntos">
+        Puntos: <span id="puntosValue">0</span>
+      </div>
+      <div id="cronometro" class="cronometro">
+        <div class="reloj" id="Minutos">00</div>
+        <div class="reloj" id="Segundos">:00</div>
+      </div>
+      <div id="wrapper" class="wrapper"></div>
+    </div>
+    <!-- MODAL INICIAL ELEGIR DIFICULTAD -->
+    <div id="modal" class="modalDialog">
+      <div class="modal-content">
+        <div class="modal-header">Seleccione un nivel de dificultad</div>
+        <div id="modal-body" class="modal-body">
+          <div id="dificultadBtn" class="modal-body">
+            <button id="facil" class="btn">Fácil</button>
+            <button id="medio" class="btn">Medio</button>
+            <button id="dificil" class="btn">Dificil</button>
+          </div>
 
-    <!-- tabla de div-->
-    <div id="espacio-tabla">
-      <table id="tabla">
-        <div
-          class="section light-content"
-          id="new-area"
-          style="
-            background-color: white;
-            width: 70%;
-            height: 70%; /*! text-align: center; */
-            margin: 0 auto; /*! background: white; */
-          "
-        >
-          <div class="wrap height-md center-xs">
-            <div class="section-content">
-              <div class="contenido">
-                <div class="columa4">
-                  <p>ONE</p>
-                </div>
-                <div class="columa4">
-                  <p>TWO</p>
-                </div>
-                <div class="columa4">
-                  <p>THREE</p>
-                </div>
-                <div class="columa4">
-                  <p>FOUR</p>
-                </div>
-              </div>
-              <div class="contenido">
-                <div class="columa4">
-                  <p>FIVE</p>
-                </div>
-                <div class="columa4">
-                  <p>SIX</p>
-                </div>
-                <div class="columa4">
-                  <p>SEVEN</p>
-                </div>
-                <div class="columa4">
-                  <p>EIGHT</p>
-                </div>
-              </div>
-              <div class="contenido">
-                <div class="columa4">
-                  <p>NINE</p>
-                </div>
-                <div class="columa4">
-                  <p>TEN</p>
-                </div>
-                <div class="columa4">
-                  <p>ELEVEN</p>
-                </div>
-                <div class="columa4">
-                  <p>12</p>
-                </div>
-              </div>
-              <div class="contenido">
-                <div class="columa4">
-                  <p>12</p>
-                </div>
-                <div class="columa4">
-                  <p>13</p>
-                </div>
-                <div class="columa4">
-                  <p>14</p>
-                </div>
-                <div class="columa4">
-                  <p>15</p>
-                </div>
-              </div>
-            </div>
+          <div id="otherBtn" class="modal-body">
+            <button id="tablaPuntuaciones" class="btn neutral">
+              Ver tabla de puntuaciones
+            </button>
           </div>
         </div>
-      </table>
+      </div>
     </div>
+
     <script src="js/javascript.js"></script>
   </body>
 </html>
