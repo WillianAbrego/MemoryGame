@@ -1,0 +1,38 @@
+#new-area div.contenido div {
+  background: #1f91ff !important;
+  border: solid 2px;
+  padding: 1em;
+  color: white;
+}
+
+.contenido {
+  box-sizing: border-box;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex: 0 1 auto;
+  -webkit-box-flex: 0;
+  flex: 0 1 auto;
+  -ms-flex-direction: row;
+  -webkit-box-orient: horizontal;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: no-wrap;
+  padding: 5px;
+}
+
+.columa4 {
+  flex-basis: 33.3%;
+  max-width: 33.3%;
+  padding: -32px;
+  margin: 5px;
+  /* font-size: xxx-large; */
+  size: auto;
+  height: 8em;
+
+  width: 30px;
+}
+
+#tabla {
+  width: 50%;
+}
