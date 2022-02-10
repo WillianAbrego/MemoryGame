@@ -6,31 +6,31 @@ let maxPuntos = 0;
 let partidaIniciada = false;
 window.onload = grid;
 
+let DiferentesDificultades = {
+  facil: [8, 4, "frutas"],
+  medio: [6, 18, "pokemon"],
+  dificil: [8, 32, "coches"],
+};
 function grid() {
-  cargarImagenes();
-  getMaxPuntos();
-
+  // cargarImagenes();
+  // getMaxPuntos();
   //NIVEL DIFICULTAD
   let modal = document.getElementById("dificultadBtn");
   let buttons = modal.childNodes;
   buttons.forEach((button) => {
     button.onclick = dificultad;
   });
-  document.getElementById("tablaPuntuaciones").onclick = historialPartidas;
-  document.getElementById("ayuda").onclick = startIntro;
+  //document.getElementById("tablaPuntuaciones").onclick = historialPartidas;
 }
 
 function dificultad() {
-  switch (this.id) {
-    case "facil":
-      generarCartas(4, 8, frutas);
-      break;
-    case "medio":
-      generarCartas(6, 18, pokemon);
-      break;
-    case "dificil":
-      generarCartas(8, 32, coches);
-      break;
-  }
-  document.getElementById("modal").setAttribute("class", "hide");
+  const ArrayDificultad = DiferentesDificultades[this.id];
+  arrayOpciones(ArrayDificultad);
 }
+
+const arrayOpciones = (array) => {
+  let [cantidadParejas, segunnum, tercer] = array;
+  console.log(cantidadParejas);
+  console.log(segunnum);
+  console.log(tercer);
+};
