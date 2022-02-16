@@ -7,7 +7,7 @@ let partidaIniciada = false;
 window.onload = grid;
 
 let DiferentesDificultades = {
-  facil: [4, 4, "frutas"],
+  facil: [4, 8, "frutas"],
   medio: [6, 18, "pokemon"],
   dificil: [8, 32, "coches"],
 };
@@ -20,6 +20,30 @@ let icons = {
   6: "fas fa-bell",
   7: "fas fa-key",
   8: "far fa-money-bill-alt",
+  9: "fab fa-angellist",
+  10: "fa fa-apple-alt",
+  11: "fa fa-archive",
+  12: "fa fa-asterisk",
+  13: "fa fa-atlas",
+  14: "fa fa-atom",
+  15: "fas fa-award",
+  16: "far fa-bookmark",
+  17: "fas fa-tree",
+  18: "fa fa-bacteria",
+  19: "fas fa-users",
+  20: "fas fa-draw-polygon",
+  21: "fas fa-comment-alt",
+  22: "fa fa-balance-scale",
+  23: "fas fa-wave-square",
+  24: "fas fa-battery-three-quarters",
+  25: "fas fa-handshake",
+  26: "fab fa-pagelines",
+  27: "fas fa-shoe-prints",
+  28: "fas fa-street-view",
+  29: "fas fa-socks",
+  30: "fas fa-allergies",
+  31: "fab fa-free-code-camp",
+  32: "fab fa-sistrix",
 };
 function grid() {
   // cargarImagenes();
@@ -35,6 +59,8 @@ function grid() {
 
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
+  // const x = DiferentesDificultades[this.id];
+  //console.log(x[1]);
   arrayOpciones(ArrayDificultad);
 }
 
@@ -42,23 +68,28 @@ const arrayOpciones = (array) => {
   let [cantidadParejas, segunnum, tercer] = array;
   let CantidadCartas = cantidadParejas * cantidadParejas;
   //console.log(CantidadCartas);
-  crearCarta(cantidadParejas);
+  //console.log(segunnum);
+  crearCarta(cantidadParejas, segunnum);
 };
 
-const crearCarta = (cantidad) => {
+const crearCarta = (cantidad, segundoParametro) => {
   let cartas = cantidad * cantidad;
+  let carta1 = ArrayNumAleatorio(segundoParametro);
+  let carta2 = ArrayNumAleatorio(segundoParametro);
+  carta1 = [...carta1, ...carta2];
+  let shuffleArray = carta1.sort(() => Math.random() - 0.5);
+  console.log(shuffleArray);
+  //document.write(shuffleArray);
+
   for (let i = 0; i < cartas; i++) {
-    console.log(i, icons[arr[i]]);
-    //console.log(arr[i]);
-    // console.log(icons[i]);
     document.getElementById(
       "principal"
     ).innerHTML += `<div class="row text-center">
     <div class="d-flex align-content-end flex-wrap contenido contenidoo" id="div1">
       <div class="d-flex align-content-end flex-wrap contenido ">
         <div class="bg-white rounded shadow-sm py-5 px-4 contcard">
-          <h5 class="mb-0" title="f"><i class=" ${
-            icons[arr[i]]
+          <h5 class="mb-0" ><i class=" ${
+            icons[shuffleArray[i]]
           } extraClass"></i></h5>
           </button>
         </div>
@@ -85,17 +116,20 @@ const ArrayNumAleatorio = (numeros) => {
   }
   return ArregloAleatorio;
 };
-const PosicionCartas = () => {
-  let carta1 = ArrayNumAleatorio(8);
-  let carta2 = ArrayNumAleatorio(8);
-  carta1 = [...carta1, ...carta2];
-  return carta1;
-};
+// const PosicionCartas = () => {
+//   let carta1 = ArrayNumAleatorio(8);
+//   let carta2 = ArrayNumAleatorio(8);
+//   carta1 = [...carta1, ...carta2];
+//   //console.log(ArrayNumAleatorio(segunnum));
+//   // console.log(segunnum);
+//   //  console.log(DiferentesDificultades);
+//   return carta1;
+// };
 
-function shuffleArray(inputArray) {
-  inputArray.sort(() => Math.random() - 0.5);
-}
-let arr = PosicionCartas();
-shuffleArray(arr);
-console.log(arr);
-document.write(arr);
+// function shuffleArray(inputArray) {
+//   inputArray.sort(() => Math.random() - 0.5);
+// }
+// let arr = PosicionCartas();
+// shuffleArray(arr);
+//console.log(arr);
+//document.write(arr);
