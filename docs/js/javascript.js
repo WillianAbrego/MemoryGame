@@ -59,8 +59,7 @@ function grid() {
 
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
-  // const x = DiferentesDificultades[this.id];
-  //console.log(x[1]);
+
   arrayOpciones(ArrayDificultad);
 }
 
@@ -78,9 +77,7 @@ const crearCarta = (cantidad, segundoParametro) => {
   let carta2 = ArrayNumAleatorio(segundoParametro);
   carta1 = [...carta1, ...carta2];
   let shuffleArray = carta1.sort(() => Math.random() - 0.5);
-  console.log(shuffleArray);
-  //document.write(shuffleArray);
-
+  document.getElementById("principal").innerHTML = "";
   for (let i = 0; i < cartas; i++) {
     document.getElementById(
       "principal"
@@ -116,20 +113,12 @@ const ArrayNumAleatorio = (numeros) => {
   }
   return ArregloAleatorio;
 };
-// const PosicionCartas = () => {
-//   let carta1 = ArrayNumAleatorio(8);
-//   let carta2 = ArrayNumAleatorio(8);
-//   carta1 = [...carta1, ...carta2];
-//   //console.log(ArrayNumAleatorio(segunnum));
-//   // console.log(segunnum);
-//   //  console.log(DiferentesDificultades);
-//   return carta1;
-// };
 
-// function shuffleArray(inputArray) {
-//   inputArray.sort(() => Math.random() - 0.5);
-// }
-// let arr = PosicionCartas();
-// shuffleArray(arr);
-//console.log(arr);
-//document.write(arr);
+// voltear carta
+
+const card = document.getElementById("card");
+card.addEventListener("click", flipCard);
+
+function flipCard() {
+  card.classList.toggle("flipCard");
+}
