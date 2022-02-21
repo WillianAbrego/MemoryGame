@@ -51,6 +51,7 @@ function grid() {
   //NIVEL DIFICULTAD
   let modal = document.getElementById("dificultadBtn");
   let buttons = modal.childNodes;
+
   buttons.forEach((button) => {
     button.onclick = dificultad;
   });
@@ -78,6 +79,7 @@ const crearCarta = (cantidad, segundoParametro) => {
   carta1 = [...carta1, ...carta2];
   let shuffleArray = carta1.sort(() => Math.random() - 0.5);
   document.getElementById("principal").innerHTML = "";
+
   for (let i = 0; i < cartas; i++) {
     document.getElementById(
       "principal"
@@ -90,9 +92,20 @@ const crearCarta = (cantidad, segundoParametro) => {
           } extraClass"></i></h5>
           </button>
         </div>
+         <div class="back">
+          <h1>my back text</h1>
+        </div>
       </div>
     </div>
 </div>`;
+  }
+  let dov = document.querySelectorAll(".contcard");
+  for (const cartas of dov) {
+    cartas.addEventListener("click", function (event) {
+      event.preventDefault();
+      console.log(cartas.childNodes[1].childNodes[0].classList[1]);
+      console.log(cartas);
+    });
   }
 };
 
