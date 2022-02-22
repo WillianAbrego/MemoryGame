@@ -84,7 +84,7 @@ const crearCarta = (cantidad, segundoParametro) => {
     document.getElementById(
       "principal"
     ).innerHTML += `<div class="row text-center">
-    <div class="d-flex align-content-end flex-wrap contenido contenidoo" id="div1">
+    <div class="d-flex align-content-end flex-wrap contenido " id="div1">
       <div class="d-flex align-content-end flex-wrap contenido ">
         <div class="bg-white rounded shadow-sm py-5 px-4 contcard">
           <h5 class="mb-0" ><i class=" ${
@@ -92,10 +92,6 @@ const crearCarta = (cantidad, segundoParametro) => {
           } extraClass"></i></h5>
           </button>
         </div>
-         <div class="back">
-          <h1>my back text</h1>
-        </div>
-      </div>
     </div>
 </div>`;
   }
@@ -105,6 +101,7 @@ const crearCarta = (cantidad, segundoParametro) => {
       event.preventDefault();
       console.log(cartas.childNodes[1].childNodes[0].classList[1]);
       console.log(cartas);
+      cartas.classList.toggle("flipCard");
     });
   }
 };
@@ -129,9 +126,9 @@ const ArrayNumAleatorio = (numeros) => {
 
 // voltear carta
 
-const card = document.getElementById("card");
-card.addEventListener("click", flipCard);
+// const card = document.getElementById("card");
+// card.addEventListener("click", flipCard);
 
-function flipCard() {
-  card.classList.toggle("flipCard");
-}
+// function flipCard() {
+//   card.classList.toggle("flipCard");
+// }
