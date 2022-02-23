@@ -86,7 +86,7 @@ const crearCarta = (cantidad, segundoParametro) => {
     ).innerHTML += `<div class="row text-center">
     <div class="d-flex align-content-end flex-wrap contenido " id="div1">
       <div class="d-flex align-content-end flex-wrap contenido ">
-        <div class="bg-white rounded shadow-sm py-5 px-4 contcard">
+        <div class="bg-white rounded shadow-sm py-5 px-4 contcard flipCard">
           <h5 class="mb-0" ><i class=" ${
             icons[shuffleArray[i]]
           } extraClass"></i></h5>
@@ -95,16 +95,26 @@ const crearCarta = (cantidad, segundoParametro) => {
     </div>
 </div>`;
   }
+  VoltearCarta();
+};
+const VoltearCarta = () => {
   let dov = document.querySelectorAll(".contcard");
+  let clickCarta = [];
   for (const cartas of dov) {
     cartas.addEventListener("click", function (event) {
       event.preventDefault();
-      console.log(cartas.childNodes[1].childNodes[0].classList[1]);
-      console.log(cartas);
+      //console.log(cartas.childNodes[1].childNodes[0].classList[1]);
+      clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
+      //console.log(cartas);
       cartas.classList.toggle("flipCard");
+      console.log(clickCarta);
     });
   }
 };
+
+// const imprimirClic = (clic) => {
+//   console.log(clic);
+// };
 
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
