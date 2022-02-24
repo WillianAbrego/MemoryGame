@@ -107,7 +107,8 @@ const VoltearCarta = () => {
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
       //console.log(cartas);
       cartas.classList.toggle("flipCard");
-      console.log(clickCarta);
+      //console.log(clickCarta);
+      ArrayCarta1Y2(clickCarta);
     });
   }
 };
@@ -115,7 +116,27 @@ const VoltearCarta = () => {
 // const imprimirClic = (clic) => {
 //   console.log(clic);
 // };
+const ArrayCarta1Y2 = (cartauno) => {
+  // let numero1 = cartauno[cartauno.length - 2];
+  // let numero2 = cartauno[cartauno.length - 1];
+  let arruno = [];
+  for (let x = 0; x < 2; x++) {
+    arruno.push(cartauno[x]);
+  }
+  if (cartauno[1] !== undefined) {
+    //console.log("array lleno");
+    Arrayde2(arruno);
 
+    // console.log(arruno);
+    //console.log(arruno);
+    cartauno.splice(0, arruno.length);
+  }
+  //console.log(arruno);
+};
+
+const Arrayde2 = (ar) => {
+  console.log(ar);
+};
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
   while (ArregloAleatorio.length < numeros) {
