@@ -89,7 +89,7 @@ const crearCarta = (cantidad, segundoParametro) => {
         <div class="bg-white rounded shadow-sm py-5 px-4 contcard flipCard">
           <h5 class="mb-0" ><i class=" ${
             icons[shuffleArray[i]]
-          } extraClass"></i></h5>
+          } ${i} extraClass"></i></h5>
           </button>
         </div>
     </div>
@@ -100,42 +100,43 @@ const crearCarta = (cantidad, segundoParametro) => {
 const VoltearCarta = () => {
   let dov = document.querySelectorAll(".contcard");
   let clickCarta = [];
+  let identificarCarta = [];
   for (const cartas of dov) {
     cartas.addEventListener("click", function (event) {
       event.preventDefault();
       //console.log(cartas.childNodes[1].childNodes[0].classList[1]);
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
-      //console.log(cartas);
+      identificarCarta.push(cartas.childNodes[1].childNodes[0].classList[2]);
       cartas.classList.toggle("flipCard");
       //console.log(clickCarta);
-      ArrayCarta1Y2(clickCarta);
+      ArrayCarta1Y2(clickCarta, identificarCarta);
     });
   }
 };
 
-// const imprimirClic = (clic) => {
-//   console.log(clic);
-// };
-const ArrayCarta1Y2 = (cartauno) => {
-  // let numero1 = cartauno[cartauno.length - 2];
-  // let numero2 = cartauno[cartauno.length - 1];
+const ArrayCarta1Y2 = (cartauno, identificador) => {
   let arruno = [];
+  let arrid = [];
   for (let x = 0; x < 2; x++) {
     arruno.push(cartauno[x]);
+    arrid.push(identificador[x]);
   }
   if (cartauno[1] !== undefined) {
     //console.log("array lleno");
-    Arrayde2(arruno);
+    Arrayde2(arruno, arrid);
 
-    // console.log(arruno);
-    //console.log(arruno);
     cartauno.splice(0, arruno.length);
+    identificador.splice(0, arruno.length);
   }
   //console.log(arruno);
 };
 
-const Arrayde2 = (ar) => {
-  console.log(ar);
+const Arrayde2 = (ar, id) => {
+  let obj = {};
+  id.forEach((k, i) => {
+    obj[k] = ar[i];
+  });
+  console.log(obj);
 };
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
