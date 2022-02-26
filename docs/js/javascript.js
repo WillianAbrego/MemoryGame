@@ -178,10 +178,17 @@ const Arrayde2 = (ar, id) => {
 
     // dov[lave[0]].classList.remove("flipCard"),
     //   dov[lave[1]].classList.remove("flipCard");
-    // console.log(dov[2]);
-  } else {
-    console.log("no son iguales");
+    //console.log(dov[2]);
+  } else if (valores[0] !== valores[1]) {
+    //console.log("no son iguales");
+    setTimeout(function () {
+      dov[lave[0]].classList.add("flipCard");
+      dov[lave[1]].classList.add("flipCard");
+    }, 1000);
 
+    //   dov[lave[1]].classList.remove("flipCard");
+  } else {
+    console.log("el mismo");
     dov[lave[0]].classList.add("flipCard");
   }
 };
