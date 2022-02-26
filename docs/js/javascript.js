@@ -108,7 +108,7 @@ const VoltearCarta = () => {
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
       identificarCarta.push(cartas.childNodes[1].childNodes[0].classList[2]);
       cartas.classList.toggle("flipCard");
-      //console.log(clickCarta);
+      //console.log(cartas);
       ArrayCarta1Y2(clickCarta, identificarCarta);
     });
   }
@@ -136,7 +136,16 @@ const Arrayde2 = (ar, id) => {
   id.forEach((k, i) => {
     obj[k] = ar[i];
   });
-  console.log(obj);
+  let tamanio = Object.keys(obj).length; //tamaño de objeto, sirve para verificar que no seleccione la misma tarjeta
+  let valores = Object.values(obj);
+  if (valores[0] === valores[1]) {
+    console.log("iguales");
+  } else {
+    console.log("no son iguales");
+  }
+  console.log();
+  // console.log(tamanio);
+  // console.log(obj);
 };
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
