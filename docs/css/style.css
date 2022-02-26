@@ -71,3 +71,6 @@ body {
   transform: rotateY(180deg);
   color: #d0e8c3;
 }
+.fli {
+  transform: rotateY(360deg);
+}

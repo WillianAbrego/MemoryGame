@@ -108,44 +108,82 @@ const VoltearCarta = () => {
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
       identificarCarta.push(cartas.childNodes[1].childNodes[0].classList[2]);
       cartas.classList.toggle("flipCard");
+      //cartas.classList.remove("flipCard");
       //console.log(cartas);
-      ArrayCarta1Y2(clickCarta, identificarCarta);
+      ArrayCarta1Y2(clickCarta, identificarCarta, cartas);
     });
   }
 };
 
-const ArrayCarta1Y2 = (cartauno, identificador) => {
+const ArrayCarta1Y2 = (cartauno, identificador, carta) => {
   let arruno = [];
   let arrid = [];
+
   for (let x = 0; x < 2; x++) {
     arruno.push(cartauno[x]);
     arrid.push(identificador[x]);
   }
+
   if (cartauno[1] !== undefined) {
-    //console.log("array lleno");
+    //const ar = [];
+    //console.log("array lleno")
+    //ar.push(CartaSeparada2(carta));
+    // ar.push(carta);
+    // console.log(ar);
     Arrayde2(arruno, arrid);
+    //Arrayde2(arruno, arrid);
 
     cartauno.splice(0, arruno.length);
     identificador.splice(0, arruno.length);
+  } else {
+    // const arr2 = [];
+    // arr2.push(carta);
+    // console.log(arr2);
+    //ar.push(CartaSeparada1(carta));
+    // ar.push(carta);
+    // console.log(ar);
   }
-  //console.log(arruno);
+
+  //console.log(CartaSeparada1(carta));
+  //console.log(cartArray);
 };
 
+const CartaSeparada1 = (car) => {
+  //console.log(car);
+};
+const CartaSeparada2 = (ca) => {
+  //console.log(ca);
+};
 const Arrayde2 = (ar, id) => {
   let obj = {};
   id.forEach((k, i) => {
     obj[k] = ar[i];
   });
+  //  console.log(obj);
+  // let punto = ".";
+  // let algooo = obj[1];
+  // let concatenado = punto.concat(algooo);
+  // console.log(concatenado);
+  let dov = document.querySelectorAll(".contcard");
+  //console.log(dov[1], dov[2]);
+
   let tamanio = Object.keys(obj).length; //tamaño de objeto, sirve para verificar que no seleccione la misma tarjeta
+  let lave = Object.keys(obj);
   let valores = Object.values(obj);
   if (valores[0] === valores[1]) {
-    console.log("iguales");
+    dov[lave[0]].classList.add("fli"),
+      dov[lave[1]].classList.add("fli"),
+      dov[lave[0]].classList.remove("flipCard"),
+      dov[lave[1]].classList.remove("flipCard");
+
+    // dov[lave[0]].classList.remove("flipCard"),
+    //   dov[lave[1]].classList.remove("flipCard");
+    // console.log(dov[2]);
   } else {
     console.log("no son iguales");
+
+    dov[lave[0]].classList.add("flipCard");
   }
-  console.log();
-  // console.log(tamanio);
-  // console.log(obj);
 };
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
@@ -164,12 +202,3 @@ const ArrayNumAleatorio = (numeros) => {
   }
   return ArregloAleatorio;
 };
-
-// voltear carta
-
-// const card = document.getElementById("card");
-// card.addEventListener("click", flipCard);
-
-// function flipCard() {
-//   card.classList.toggle("flipCard");
-// }
