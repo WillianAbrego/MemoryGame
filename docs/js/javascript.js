@@ -1,15 +1,15 @@
 let parejasAcertadas = [];
 let numImgVisibles = 0;
 
-let puntos = 0;
+let puntos = 1;
 let maxPuntos = 0;
 let partidaIniciada = false;
 window.onload = grid;
 
 let DiferentesDificultades = {
-  facil: [4, 8, "frutas"],
-  medio: [6, 18, "pokemon"],
-  dificil: [8, 32, "coches"],
+  facil: [4, 8],
+  medio: [6, 18],
+  dificil: [8, 32],
 };
 let icons = {
   1: "fas fa-robot",
@@ -55,8 +55,13 @@ function grid() {
   buttons.forEach((button) => {
     button.onclick = dificultad;
   });
+
   //document.getElementById("tablaPuntuaciones").onclick = historialPartidas;
 }
+const getPuntuacion = (Puntos) => {
+  let score = document.getElementById("puntosValue");
+  score.innerText = Puntos;
+};
 
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
@@ -67,8 +72,6 @@ function dificultad() {
 const arrayOpciones = (array) => {
   let [cantidadParejas, segunnum, tercer] = array;
   let CantidadCartas = cantidadParejas * cantidadParejas;
-  //console.log(CantidadCartas);
-  //console.log(segunnum);
   crearCarta(cantidadParejas, segunnum);
 };
 
@@ -104,12 +107,9 @@ const VoltearCarta = () => {
   for (const cartas of dov) {
     cartas.addEventListener("click", function (event) {
       event.preventDefault();
-      //console.log(cartas.childNodes[1].childNodes[0].classList[1]);
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
       identificarCarta.push(cartas.childNodes[1].childNodes[0].classList[2]);
       cartas.classList.toggle("flipCard");
-      //cartas.classList.remove("flipCard");
-      //console.log(cartas);
       ArrayCarta1Y2(clickCarta, identificarCarta, cartas);
     });
   }
@@ -125,48 +125,18 @@ const ArrayCarta1Y2 = (cartauno, identificador, carta) => {
   }
 
   if (cartauno[1] !== undefined) {
-    //const ar = [];
-    //console.log("array lleno")
-    //ar.push(CartaSeparada2(carta));
-    // ar.push(carta);
-    // console.log(ar);
     Arrayde2(arruno, arrid);
-    //Arrayde2(arruno, arrid);
-
     cartauno.splice(0, arruno.length);
     identificador.splice(0, arruno.length);
-  } else {
-    // const arr2 = [];
-    // arr2.push(carta);
-    // console.log(arr2);
-    //ar.push(CartaSeparada1(carta));
-    // ar.push(carta);
-    // console.log(ar);
   }
-
-  //console.log(CartaSeparada1(carta));
-  //console.log(cartArray);
 };
 
-const CartaSeparada1 = (car) => {
-  //console.log(car);
-};
-const CartaSeparada2 = (ca) => {
-  //console.log(ca);
-};
 const Arrayde2 = (ar, id) => {
   let obj = {};
   id.forEach((k, i) => {
     obj[k] = ar[i];
   });
-  //  console.log(obj);
-  // let punto = ".";
-  // let algooo = obj[1];
-  // let concatenado = punto.concat(algooo);
-  // console.log(concatenado);
   let dov = document.querySelectorAll(".contcard");
-  //console.log(dov[1], dov[2]);
-
   let tamanio = Object.keys(obj).length; //tamaño de objeto, sirve para verificar que no seleccione la misma tarjeta
   let lave = Object.keys(obj);
   let valores = Object.values(obj);
@@ -176,22 +146,19 @@ const Arrayde2 = (ar, id) => {
       dov[lave[0]].classList.remove("flipCard"),
       dov[lave[1]].classList.remove("flipCard");
 
-    // dov[lave[0]].classList.remove("flipCard"),
-    //   dov[lave[1]].classList.remove("flipCard");
-    //console.log(dov[2]);
+    getPuntuacion(puntos++);
+    //    Puntuacion();
   } else if (valores[0] !== valores[1]) {
-    //console.log("no son iguales");
     setTimeout(function () {
       dov[lave[0]].classList.add("flipCard");
       dov[lave[1]].classList.add("flipCard");
     }, 1000);
-
-    //   dov[lave[1]].classList.remove("flipCard");
   } else {
     console.log("el mismo");
     dov[lave[0]].classList.add("flipCard");
   }
 };
+//const Puntuacion = () => {};
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
   while (ArregloAleatorio.length < numeros) {
