@@ -46,7 +46,6 @@ let icons = {
   32: "fab fa-sistrix",
 };
 function grid() {
-  // cargarImagenes();
   // getMaxPuntos();
   //NIVEL DIFICULTAD
   let modal = document.getElementById("dificultadBtn");
@@ -61,17 +60,20 @@ function grid() {
 const getPuntuacion = (Puntos) => {
   let score = document.getElementById("puntosValue");
   score.innerText = Puntos;
+  if (Puntos === 0) {
+    console.log("zero");
+  }
 };
 
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
-
+  getPuntuacion((puntos = 0));
   arrayOpciones(ArrayDificultad);
 }
 
 const arrayOpciones = (array) => {
   let [cantidadParejas, segunnum, tercer] = array;
-  let CantidadCartas = cantidadParejas * cantidadParejas;
+  //  let CantidadCartas = cantidadParejas * cantidadParejas;
   crearCarta(cantidadParejas, segunnum);
 };
 
@@ -110,12 +112,12 @@ const VoltearCarta = () => {
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
       identificarCarta.push(cartas.childNodes[1].childNodes[0].classList[2]);
       cartas.classList.toggle("flipCard");
-      ArrayCarta1Y2(clickCarta, identificarCarta, cartas);
+      ArrayCarta1Y2(clickCarta, identificarCarta);
     });
   }
 };
 
-const ArrayCarta1Y2 = (cartauno, identificador, carta) => {
+const ArrayCarta1Y2 = (cartauno, identificador) => {
   let arruno = [];
   let arrid = [];
 
@@ -146,7 +148,7 @@ const Arrayde2 = (ar, id) => {
       dov[lave[0]].classList.remove("flipCard"),
       dov[lave[1]].classList.remove("flipCard");
 
-    getPuntuacion(puntos++);
+    getPuntuacion(++puntos);
     //    Puntuacion();
   } else if (valores[0] !== valores[1]) {
     setTimeout(function () {
@@ -154,7 +156,6 @@ const Arrayde2 = (ar, id) => {
       dov[lave[1]].classList.add("flipCard");
     }, 1000);
   } else {
-    console.log("el mismo");
     dov[lave[0]].classList.add("flipCard");
   }
 };
@@ -176,3 +177,5 @@ const ArrayNumAleatorio = (numeros) => {
   }
   return ArregloAleatorio;
 };
+
+console.log(puntos);
