@@ -9,8 +9,10 @@ window.onload = grid;
 let DiferentesDificultades = {
   //facil: [4, 8],
   facil: [2, 2],
-  medio: [6, 18],
-  dificil: [8, 32],
+  //medio: [6, 18],
+  medio: [2, 2],
+  //dificil: [8, 32],
+  dificil: [2, 2],
 };
 let icons = {
   1: "fas fa-robot",
@@ -50,15 +52,52 @@ function grid() {
   // getMaxPuntos();
   //NIVEL DIFICULTAD
   let modal = document.getElementById("dificultadBtn");
+
   let buttons = modal.childNodes;
 
   buttons.forEach((button) => {
     button.onclick = dificultad;
   });
 
-  //document.getElementById("tablaPuntuaciones").onclick = historialPartidas;
+  document.getElementById("tablaPuntuaciones").onclick = historialPartidas;
 }
 let ArrayPuntos = [];
+
+const historialPartidas = () => {
+  document.getElementById("principal").innerHTML = " ";
+  document.getElementById("tablaPoint").innerHTML = `
+  <div >
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+     
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+     
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+     
+    </tr>
+  </tbody>
+</table>`;
+};
 
 const getPuntuacion = (lavel) => {
   let score = document.getElementById("puntosValue");
@@ -92,6 +131,7 @@ const arrayOpciones = (array) => {
 };
 
 const crearCarta = (cantidad, segundoParametro) => {
+  document.getElementById("tablaPoint").innerHTML = " ";
   let cartas = cantidad * cantidad;
   let carta1 = ArrayNumAleatorio(segundoParametro);
   let carta2 = ArrayNumAleatorio(segundoParametro);
