@@ -7,7 +7,8 @@ let partidaIniciada = false;
 window.onload = grid;
 
 let DiferentesDificultades = {
-  facil: [4, 8],
+  //facil: [4, 8],
+  facil: [2, 2],
   medio: [6, 18],
   dificil: [8, 32],
 };
@@ -57,12 +58,25 @@ function grid() {
 
   //document.getElementById("tablaPuntuaciones").onclick = historialPartidas;
 }
-const getPuntuacion = (Puntos) => {
+let ArrayPuntos = [];
+
+const getPuntuacion = (lavel) => {
   let score = document.getElementById("puntosValue");
-  score.innerText = Puntos;
-  if (Puntos === 0) {
-    console.log("zero");
+  if (lavel[0] != undefined) {
+    ArrayPuntos.push(lavel);
+  } else {
+    //("borrando array puntos");
+    ArrayPuntos = [];
   }
+
+  let resultado = ArrayPuntos.reduce((actual, siguiente) => {
+    return actual.concat(siguiente);
+  }, []);
+
+  let dataArr = new Set(resultado);
+  let result = [...dataArr];
+
+  score.innerText = result.length / 2;
 };
 
 function dificultad() {
@@ -148,7 +162,8 @@ const Arrayde2 = (ar, id) => {
       dov[lave[0]].classList.remove("flipCard"),
       dov[lave[1]].classList.remove("flipCard");
 
-    getPuntuacion(++puntos);
+    //  console.log(lave, valores);
+    getPuntuacion(lave);
     //    Puntuacion();
   } else if (valores[0] !== valores[1]) {
     setTimeout(function () {
@@ -175,7 +190,6 @@ const ArrayNumAleatorio = (numeros) => {
       ArregloAleatorio[ArregloAleatorio.length] = numeroAleatorio;
     }
   }
+  //console.log(ArregloAleatorio);
   return ArregloAleatorio;
 };
-
-console.log(puntos);
