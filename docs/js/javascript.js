@@ -106,6 +106,7 @@ const getPuntuacion = (lavel) => {
     ArrayPuntos.push(lavel);
   } else {
     //("borrando array puntos");
+    resetTime();
     ArrayPuntos = [];
   }
 
