@@ -122,12 +122,30 @@ const getPuntuacion = (lavel) => {
   if (score.innerText == 2) {
     let modalbody = document.getElementById("modalbody");
     clearTimeout(t);
-    console.log(cronometro.innerText); //tiempo
+    // console.log(cronometro.innerText); //tiempo
     $("#exampleModalCenter").modal({ show: true });
     $("#modal-body").val("valor cambiado");
-    modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input id="modalName" type="text" />`;
+    modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input  id="modalName" type="text" />`;
+
+    pointsavefun();
   }
 };
+let puntajes = [];
+function pointsavefun() {
+  const savepoint = document.getElementById("saveChange");
+
+  savepoint.addEventListener("click", (e) => {
+    e.preventDefault();
+    let player = document.getElementById("modalName").value;
+    let players = {
+      name: player,
+      tiempo: cronometro.innerText,
+    };
+    puntajes.push(players);
+    window.localStorage.setItem("points", JSON.stringify(puntajes));
+  });
+  console.log(savepoint);
+}
 
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
