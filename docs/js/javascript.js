@@ -118,6 +118,11 @@ const getPuntuacion = (lavel) => {
   let result = [...dataArr];
 
   score.innerText = result.length / 2;
+  // ver el momento en que el jugador gana
+  if (score.innerText == 2) {
+    console.log(score.innerText);
+    $("#exampleModalCenter").modal({ show: true });
+  }
 };
 
 function dificultad() {
