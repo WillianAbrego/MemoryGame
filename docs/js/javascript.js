@@ -120,8 +120,12 @@ const getPuntuacion = (lavel) => {
   score.innerText = result.length / 2;
   // ver el momento en que el jugador gana
   if (score.innerText == 2) {
-    console.log(score.innerText);
+    let modalbody = document.getElementById("modalbody");
+    clearTimeout(t);
+    console.log(cronometro.innerText); //tiempo
     $("#exampleModalCenter").modal({ show: true });
+    $("#modal-body").val("valor cambiado");
+    modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input id="modalName" type="text" />`;
   }
 };
 
