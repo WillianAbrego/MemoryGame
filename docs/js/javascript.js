@@ -130,12 +130,16 @@ const getPuntuacion = (lavel) => {
     pointsavefun();
   }
 };
-let puntajes = [];
+//let puntajes = [];
+
 function pointsavefun() {
+  //let puntajes = window.localStorage.getItem("points");
+  let puntajes = JSON.parse(window.localStorage.getItem("points"));
+  console.log(puntajes);
   const savepoint = document.getElementById("saveChange");
 
   savepoint.addEventListener("click", (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     let player = document.getElementById("modalName").value;
     let players = {
       name: player,
@@ -143,8 +147,13 @@ function pointsavefun() {
     };
     puntajes.push(players);
     window.localStorage.setItem("points", JSON.stringify(puntajes));
+    $("#exampleModalCenter").modal("hide");
+    resetTime();
+    puntosValue.innerText = 0;
+    document.getElementById("principal").innerHTML = " ";
   });
-  console.log(savepoint);
+
+  //console.log(savepoint);
 }
 
 function dificultad() {
