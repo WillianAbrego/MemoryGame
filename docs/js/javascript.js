@@ -113,7 +113,7 @@ const getPuntuacion = (lavel) => {
     let modalbody = document.getElementById("modalbody");
     clearTimeout(t);
     // console.log(cronometro.innerText); //tiempo
-    $("#exampleModalCenter").modal({ show: true });
+    $("#staticBackdrop").modal("show");
     $("#modal-body").val("valor cambiado");
     modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input  id="modalName" type="text" />`;
 
@@ -125,24 +125,53 @@ const getPuntuacion = (lavel) => {
 function pointsavefun() {
   //let puntajes = window.localStorage.getItem("points");
   let puntajes = JSON.parse(window.localStorage.getItem("points"));
-  console.log(puntajes);
-  const savepoint = document.getElementById("saveChange");
+  if (puntajes == null) {
+    const savepoint = document.getElementById("saveChange");
+    const cancelar = document.getElementById("cancelar");
 
-  savepoint.addEventListener("click", (e) => {
-    //e.preventDefault();
-    let player = document.getElementById("modalName").value;
-    let players = {
-      name: player,
-      tiempo: cronometro.innerText,
-    };
-    puntajes.push(players);
-    window.localStorage.setItem("points", JSON.stringify(puntajes));
-    $("#exampleModalCenter").modal("hide");
-    resetTime();
-    puntosValue.innerText = 0;
-    document.getElementById("principal").innerHTML = " ";
-  });
+    cancelar.addEventListener("click", () => {
+      window.location.reload();
+    });
 
+    savepoint.addEventListener("click", (e) => {
+      //e.preventDefault();
+      let player = document.getElementById("modalName").value;
+      let players = {
+        name: player,
+        tiempo: cronometro.innerText,
+      };
+
+      window.localStorage.setItem("points", JSON.stringify([players]));
+      $("#staticBackdrop").modal("hide");
+      resetTime();
+      puntosValue.innerText = 0;
+      document.getElementById("principal").innerHTML = " ";
+      window.location.reload();
+    });
+  } else {
+    const savepoint = document.getElementById("saveChange");
+    const cancelar = document.getElementById("cancelar");
+
+    cancelar.addEventListener("click", () => {
+      window.location.reload();
+    });
+    savepoint.addEventListener("click", (e) => {
+      //e.preventDefault();
+      let player = document.getElementById("modalName").value;
+      let players = {
+        name: player,
+        tiempo: cronometro.innerText,
+      };
+      console.log(puntajes);
+      puntajes.push(players);
+      window.localStorage.setItem("points", JSON.stringify(puntajes));
+      $("#staticBackdrop").modal("hide");
+      resetTime();
+      puntosValue.innerText = 0;
+      document.getElementById("principal").innerHTML = " ";
+      window.location.reload();
+    });
+  }
   //console.log(savepoint);
 }
 
