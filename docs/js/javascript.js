@@ -67,36 +67,26 @@ const historialPartidas = () => {
   document.getElementById("principal").innerHTML = " ";
   document.getElementById("tablaPoint").innerHTML = `
   <div >
-  <table class="table table-striped">
+  <table class="table table-striped ">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      
+      <th scope="col">Name</th>
+      <th scope="col">Time</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-     
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-     
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-     
-    </tr>
+  <tbody id="tbodyId">
   </tbody>
 </table>`;
+  sorted.forEach((element, index) => {
+    document.getElementById("tbodyId").innerHTML += `<tr>
+      <th scope="row">${index + 1}</th>
+      <td>${element.name}</td>
+      <td>${element.tiempo}</td>
+     
+    </tr>`;
+  });
+
   resetTime();
 };
 
@@ -329,3 +319,15 @@ function resetTime() {
   clearTimeout(t);
   cronometro.textContent = "00:00:00";
 }
+
+let points = JSON.parse(window.localStorage.getItem("points"));
+//copiar de forma profunda un array
+let copiaPoint = JSON.parse(JSON.stringify(points));
+
+let alto = copiaPoint.map((elem) => {
+  return (elem.auxTime = parseInt(elem.tiempo.split(":").join("")));
+});
+
+let sorted = copiaPoint.sort((a, b) => {
+  return a.auxTime - b.auxTime;
+});
