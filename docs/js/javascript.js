@@ -83,28 +83,68 @@ const historialPartidas = () => {
   <tbody id="tbodyId">
   </tbody>
 </table>`;
-  sorted.forEach((element, index) => {
-    document.getElementById("tbodyId").innerHTML += `<tr>
-      <th scope="row">${index + 1}</th>
-      <td>${element.name}</td>
-      <td>${element.tiempo}</td>
-     
-    </tr>`;
-  });
+  // sorted.forEach((element, index) => {
+  //   document.getElementById("tbodyId").innerHTML += `<tr>
+  //     <th scope="row">${index + 1}</th>
+  //     <td>${element.name}</td>
+  //     <td>${element.tiempo}</td>
+
+  //   </tr>`;
+  // });
   const easy = document.getElementById("facil1");
 
   easy.addEventListener("click", () => {
-    console.log("facil");
-  });
-  const normal = document.getElementById("medio2");
+    document.getElementById("tbodyId").innerHTML = " ";
+    let orden = [];
+    orden = ordenamiento("facil");
+    if (orden == null) {
+      return;
+    }
 
+    orden.forEach((element, index) => {
+      document.getElementById("tbodyId").innerHTML += `<tr>
+        <th scope="row">${index + 1}</th>
+        <td>${element.name}</td>
+        <td>${element.tiempo}</td>
+       
+      </tr>`;
+    });
+  });
+
+  const normal = document.getElementById("medio2");
   normal.addEventListener("click", () => {
-    console.log("medio");
+    document.getElementById("tbodyId").innerHTML = " ";
+    let orden = [];
+    orden = ordenamiento("medio");
+    if (orden == null) {
+      return;
+    }
+    orden.forEach((element, index) => {
+      document.getElementById("tbodyId").innerHTML += `<tr>
+        <th scope="row">${index + 1}</th>
+        <td>${element.name}</td>
+        <td>${element.tiempo}</td>
+       
+      </tr>`;
+    });
   });
   const hard = document.getElementById("dificil3");
 
   hard.addEventListener("click", () => {
-    console.log("dificil");
+    document.getElementById("tbodyId").innerHTML = " ";
+    let orden = [];
+    orden = ordenamiento("dificil");
+    if (orden == null) {
+      return;
+    }
+    orden.forEach((element, index) => {
+      document.getElementById("tbodyId").innerHTML += `<tr>
+        <th scope="row">${index + 1}</th>
+        <td>${element.name}</td>
+        <td>${element.tiempo}</td>
+       
+      </tr>`;
+    });
   });
 
   resetTime();
@@ -145,7 +185,6 @@ const getPuntuacion = (lavel, tercer) => {
 //let puntajes = [];
 
 function pointsavefun(tercer) {
-  console.log(tercer);
   //let puntajes = window.localStorage.getItem("points");
   let puntajes = JSON.parse(window.localStorage.getItem(tercer));
   if (puntajes == null) {
@@ -185,7 +224,7 @@ function pointsavefun(tercer) {
         name: player,
         tiempo: cronometro.innerText,
       };
-      console.log(puntajes);
+
       puntajes.push(players);
       window.localStorage.setItem(tercer, JSON.stringify(puntajes));
       $("#staticBackdrop").modal("hide");
@@ -373,14 +412,32 @@ function resetTime() {
   cronometro.textContent = "00:00:00";
 }
 
-let points = JSON.parse(window.localStorage.getItem("facil"));
-//copiar de forma profunda un array
-let copiaPoint = JSON.parse(JSON.stringify(points));
+// let points = JSON.parse(window.localStorage.getItem("facil"));
+// //copiar de forma profunda un array
+// let copiaPoint = JSON.parse(JSON.stringify(points));
 
-let alto = copiaPoint.map((elem) => {
-  return (elem.auxTime = parseInt(elem.tiempo.split(":").join("")));
-});
+// let alto = copiaPoint.map((elem) => {
+//   return (elem.auxTime = parseInt(elem.tiempo.split(":").join("")));
+// });
 
-let sorted = copiaPoint.sort((a, b) => {
-  return a.auxTime - b.auxTime;
-});
+// let sorted = copiaPoint.sort((a, b) => {
+//   return a.auxTime - b.auxTime;
+// });
+
+function ordenamiento(dificultadKey) {
+  let points = JSON.parse(window.localStorage.getItem(dificultadKey));
+
+  let copiaPoint = JSON.parse(JSON.stringify(points));
+  if (copiaPoint == null) {
+    return;
+  }
+
+  copiaPoint.map((elem) => {
+    return (elem.auxTime = parseInt(elem.tiempo.split(":").join("")));
+  });
+
+  const sorted = copiaPoint.sort((a, b) => {
+    return a.auxTime - b.auxTime;
+  });
+  return sorted;
+}
