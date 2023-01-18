@@ -8,11 +8,11 @@ window.onload = grid;
 
 let DiferentesDificultades = {
   //facil: [4, 8],
-  facil: [2, 2],
+  facil: [2, 2, "facil"],
   //medio: [6, 18],
-  medio: [2, 2],
+  medio: [2, 2, "medio"],
   //dificil: [8, 32],
-  dificil: [2, 2],
+  dificil: [2, 2, "dificil"],
 };
 let icons = {
   1: "fas fa-robot",
@@ -66,6 +66,11 @@ let ArrayPuntos = [];
 const historialPartidas = () => {
   document.getElementById("principal").innerHTML = " ";
   document.getElementById("tablaPoint").innerHTML = `
+  <div id="tablePoints" class="modal-body">
+  <button id="facil1" class="btn">Fácil</button>
+  <button id="medio2" class="btn">Medio</button>
+  <button id="dificil3" class="btn">Dificil</button>
+</div>
   <div >
   <table class="table table-striped ">
   <thead>
@@ -86,11 +91,28 @@ const historialPartidas = () => {
      
     </tr>`;
   });
+  const easy = document.getElementById("facil1");
+
+  easy.addEventListener("click", () => {
+    console.log("facil");
+  });
+  const normal = document.getElementById("medio2");
+
+  normal.addEventListener("click", () => {
+    console.log("medio");
+  });
+  const hard = document.getElementById("dificil3");
+
+  hard.addEventListener("click", () => {
+    console.log("dificil");
+  });
 
   resetTime();
 };
 
-const getPuntuacion = (lavel) => {
+function ListarPuntuacionesDeNivel(params) {}
+
+const getPuntuacion = (lavel, tercer) => {
   let score = document.getElementById("puntosValue");
   if (lavel[0] != undefined) {
     ArrayPuntos.push(lavel);
@@ -117,14 +139,15 @@ const getPuntuacion = (lavel) => {
     $("#modal-body").val("valor cambiado");
     modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input  id="modalName" type="text" />`;
 
-    pointsavefun();
+    pointsavefun(tercer);
   }
 };
 //let puntajes = [];
 
-function pointsavefun() {
+function pointsavefun(tercer) {
+  console.log(tercer);
   //let puntajes = window.localStorage.getItem("points");
-  let puntajes = JSON.parse(window.localStorage.getItem("points"));
+  let puntajes = JSON.parse(window.localStorage.getItem(tercer));
   if (puntajes == null) {
     const savepoint = document.getElementById("saveChange");
     const cancelar = document.getElementById("cancelar");
@@ -141,7 +164,7 @@ function pointsavefun() {
         tiempo: cronometro.innerText,
       };
 
-      window.localStorage.setItem("points", JSON.stringify([players]));
+      window.localStorage.setItem(tercer, JSON.stringify([players]));
       $("#staticBackdrop").modal("hide");
       resetTime();
       puntosValue.innerText = 0;
@@ -164,7 +187,7 @@ function pointsavefun() {
       };
       console.log(puntajes);
       puntajes.push(players);
-      window.localStorage.setItem("points", JSON.stringify(puntajes));
+      window.localStorage.setItem(tercer, JSON.stringify(puntajes));
       $("#staticBackdrop").modal("hide");
       resetTime();
       puntosValue.innerText = 0;
@@ -184,11 +207,12 @@ function dificultad() {
 
 const arrayOpciones = (array) => {
   let [cantidadParejas, segunnum, tercer] = array;
+
   //  let CantidadCartas = cantidadParejas * cantidadParejas;
-  crearCarta(cantidadParejas, segunnum);
+  crearCarta(cantidadParejas, segunnum, tercer);
 };
 
-const crearCarta = (cantidad, segundoParametro) => {
+const crearCarta = (cantidad, segundoParametro, tercer) => {
   document.getElementById("tablaPoint").innerHTML = " ";
   let cartas = cantidad * cantidad;
   let carta1 = ArrayNumAleatorio(segundoParametro);
@@ -214,9 +238,9 @@ const crearCarta = (cantidad, segundoParametro) => {
   }
   //inicia cronometro
   timer();
-  VoltearCarta();
+  VoltearCarta(tercer);
 };
-const VoltearCarta = () => {
+const VoltearCarta = (tercer) => {
   let dov = document.querySelectorAll(".contcard");
   let clickCarta = [];
   let identificarCarta = [];
@@ -226,12 +250,12 @@ const VoltearCarta = () => {
       clickCarta.push(cartas.childNodes[1].childNodes[0].classList[1]);
       identificarCarta.push(cartas.childNodes[1].childNodes[0].classList[2]);
       cartas.classList.toggle("flipCard");
-      ArrayCarta1Y2(clickCarta, identificarCarta);
+      ArrayCarta1Y2(clickCarta, identificarCarta, tercer);
     });
   }
 };
 
-const ArrayCarta1Y2 = (cartauno, identificador) => {
+const ArrayCarta1Y2 = (cartauno, identificador, tercer) => {
   let arruno = [];
   let arrid = [];
 
@@ -241,13 +265,13 @@ const ArrayCarta1Y2 = (cartauno, identificador) => {
   }
 
   if (cartauno[1] !== undefined) {
-    Arrayde2(arruno, arrid);
+    Arrayde2(arruno, arrid, tercer);
     cartauno.splice(0, arruno.length);
     identificador.splice(0, arruno.length);
   }
 };
 
-const Arrayde2 = (ar, id) => {
+const Arrayde2 = (ar, id, tercer) => {
   let obj = {};
   id.forEach((k, i) => {
     obj[k] = ar[i];
@@ -263,7 +287,7 @@ const Arrayde2 = (ar, id) => {
       dov[lave[1]].classList.remove("flipCard");
 
     //  console.log(lave, valores);
-    getPuntuacion(lave);
+    getPuntuacion(lave, tercer);
     //    Puntuacion();
   } else if (valores[0] !== valores[1]) {
     setTimeout(function () {
@@ -349,7 +373,7 @@ function resetTime() {
   cronometro.textContent = "00:00:00";
 }
 
-let points = JSON.parse(window.localStorage.getItem("points"));
+let points = JSON.parse(window.localStorage.getItem("facil"));
 //copiar de forma profunda un array
 let copiaPoint = JSON.parse(JSON.stringify(points));
 
