@@ -7,12 +7,12 @@ let partidaIniciada = false;
 window.onload = grid;
 
 let DiferentesDificultades = {
-  //facil: [4, 8],
-  facil: [2, 2, "facil"],
-  //medio: [6, 18],
-  medio: [2, 2, "medio"],
-  //dificil: [8, 32],
-  dificil: [2, 2, "dificil"],
+  facil: [4, 8, "facil"],
+  //facil: [2, 2, "facil"],
+  medio: [6, 18, "medio"],
+  //medio: [2, 2, "medio"],
+  dificil: [8, 32, "dificil"],
+  //dificil: [2, 2, "dificil"],
 };
 let icons = {
   1: "fas fa-robot",
@@ -49,6 +49,7 @@ let icons = {
   32: "fab fa-sistrix",
 };
 function grid() {
+  PartidasJugadas();
   // getMaxPuntos();
   //NIVEL DIFICULTAD
   let modal = document.getElementById("dificultadBtn");
@@ -68,11 +69,11 @@ const historialPartidas = () => {
   document.getElementById("principal").innerHTML = " ";
   document.getElementById("tablaPoint").innerHTML = `
   <div id="tablePoints" class="modal-body">
-  <button id="facil1" class="btn">Fácil</button>
-  <button id="medio2" class="btn">Medio</button>
-  <button id="dificil3" class="btn">Dificil</button>
+  <button id="facil1" class="btn  btn-outline-primary">Fácil</button>
+  <button id="medio2" class="btn btn-outline-secondary">Medio</button>
+  <button id="dificil3" class="btn btn-outline-danger">Dificil</button>
 </div>
-  <div >
+ 
   <table class="table table-striped ">
   <thead>
     <tr>
@@ -168,7 +169,9 @@ const getPuntuacion = (lavel, tercer) => {
   let dataArr = new Set(resultado);
   let result = [...dataArr];
 
+  //score.innerText = result.length / 2;
   score.innerText = result.length / 2;
+
   // ver el momento en que el jugador gana
   if (score.innerText == 2) {
     let modalbody = document.getElementById("modalbody");
@@ -452,4 +455,20 @@ function maxPointLevel(level) {
     return (maxpoint.innerText = 0);
   }
   maxpoint.innerText = `${aux[0].name} --- ${aux[0].tiempo}`;
+}
+
+function PartidasJugadas() {
+  const numPartida = document.getElementById("numPartidasValue");
+
+  let easy =
+    ordenamiento("facil") == undefined ? 0 : ordenamiento("facil").length;
+
+  let medium =
+    ordenamiento("medio") == undefined ? 0 : ordenamiento("medio").length;
+
+  let hard =
+    ordenamiento("dificil") == undefined ? 0 : ordenamiento("dificil").length;
+
+  // console.log(easy, medium, hard);
+  return (numPartida.innerText = easy + medium + hard);
 }
