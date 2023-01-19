@@ -64,6 +64,7 @@ function grid() {
 let ArrayPuntos = [];
 
 const historialPartidas = () => {
+  document.getElementById("puntosMaxValue").innerText = 0;
   document.getElementById("principal").innerHTML = " ";
   document.getElementById("tablaPoint").innerHTML = `
   <div id="tablePoints" class="modal-body">
@@ -149,8 +150,6 @@ const historialPartidas = () => {
 
   resetTime();
 };
-
-function ListarPuntuacionesDeNivel(params) {}
 
 const getPuntuacion = (lavel, tercer) => {
   let score = document.getElementById("puntosValue");
@@ -246,6 +245,8 @@ function dificultad() {
 
 const arrayOpciones = (array) => {
   let [cantidadParejas, segunnum, tercer] = array;
+
+  maxPointLevel(tercer);
 
   //  let CantidadCartas = cantidadParejas * cantidadParejas;
   crearCarta(cantidadParejas, segunnum, tercer);
@@ -440,4 +441,15 @@ function ordenamiento(dificultadKey) {
     return a.auxTime - b.auxTime;
   });
   return sorted;
+}
+
+function maxPointLevel(level) {
+  const maxpoint = document.getElementById("puntosMaxValue");
+
+  let aux = ordenamiento(level);
+
+  if (aux == null) {
+    return (maxpoint.innerText = 0);
+  }
+  maxpoint.innerText = `${aux[0].name} --- ${aux[0].tiempo}`;
 }
