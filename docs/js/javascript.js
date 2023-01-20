@@ -1,9 +1,15 @@
-let parejasAcertadas = [];
-let numImgVisibles = 0;
+import { icons } from "./icon.js";
 
-let puntos = 1;
-let maxPuntos = 0;
-let partidaIniciada = false;
+window.onload = () => {
+  console.log(icons);
+};
+
+// let parejasAcertadas = [];
+// let numImgVisibles = 0;
+
+// let puntos = 1;
+// let maxPuntos = 0;
+// let partidaIniciada = false;
 window.onload = grid;
 
 let DiferentesDificultades = {
@@ -11,40 +17,7 @@ let DiferentesDificultades = {
   medio: [6, 18, "medio"],
   dificil: [8, 32, "dificil"],
 };
-let icons = {
-  1: "fas fa-robot",
-  2: "fas fa-gamepad",
-  3: "fa fa-pencil",
-  4: "fas fa-ice-cream",
-  5: "fas fa-anchor",
-  6: "fas fa-bell",
-  7: "fas fa-key",
-  8: "far fa-money-bill-alt",
-  9: "fab fa-angellist",
-  10: "fa fa-apple-alt",
-  11: "fa fa-archive",
-  12: "fa fa-asterisk",
-  13: "fa fa-atlas",
-  14: "fa fa-atom",
-  15: "fas fa-award",
-  16: "far fa-bookmark",
-  17: "fas fa-tree",
-  18: "fa fa-bacteria",
-  19: "fas fa-users",
-  20: "fas fa-draw-polygon",
-  21: "fas fa-comment-alt",
-  22: "fa fa-balance-scale",
-  23: "fas fa-wave-square",
-  24: "fas fa-battery-three-quarters",
-  25: "fas fa-handshake",
-  26: "fab fa-pagelines",
-  27: "fas fa-shoe-prints",
-  28: "fas fa-street-view",
-  29: "fas fa-socks",
-  30: "fas fa-allergies",
-  31: "fab fa-free-code-camp",
-  32: "fab fa-sistrix",
-};
+
 function grid() {
   PartidasJugadas();
 
@@ -168,7 +141,6 @@ const getPuntuacion = (lavel, tercer) => {
     $("#staticBackdrop").modal("show");
     $("#modal-body").val("valor cambiado");
     modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input  id="modalName" type="text" />`;
-
     pointsavefun(tercer);
   }
 };
