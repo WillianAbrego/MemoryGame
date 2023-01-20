@@ -8,11 +8,8 @@ window.onload = grid;
 
 let DiferentesDificultades = {
   facil: [4, 8, "facil"],
-  //facil: [2, 2, "facil"],
   medio: [6, 18, "medio"],
-  //medio: [2, 2, "medio"],
   dificil: [8, 32, "dificil"],
-  //dificil: [2, 2, "dificil"],
 };
 let icons = {
   1: "fas fa-robot",
@@ -50,8 +47,7 @@ let icons = {
 };
 function grid() {
   PartidasJugadas();
-  // getMaxPuntos();
-  //NIVEL DIFICULTAD
+
   let modal = document.getElementById("dificultadBtn");
 
   let buttons = modal.childNodes;
@@ -85,14 +81,7 @@ const historialPartidas = () => {
   <tbody id="tbodyId">
   </tbody>
 </table>`;
-  // sorted.forEach((element, index) => {
-  //   document.getElementById("tbodyId").innerHTML += `<tr>
-  //     <th scope="row">${index + 1}</th>
-  //     <td>${element.name}</td>
-  //     <td>${element.tiempo}</td>
 
-  //   </tr>`;
-  // });
   const easy = document.getElementById("facil1");
 
   easy.addEventListener("click", () => {
@@ -169,16 +158,13 @@ const getPuntuacion = (lavel, tercer) => {
   let dataArr = new Set(resultado);
   let result = [...dataArr];
 
-  //score.innerText = result.length / 2;
   score.innerText = result.length / 2;
-  // console.log(DiferentesDificultades);
-  // console.log(tercer);
-  // ver el momento en que el jugador gana
 
   if (score.innerText == DiferentesDificultades[tercer][1]) {
     let modalbody = document.getElementById("modalbody");
 
-    // console.log(cronometro.innerText); //tiempo
+    clearTimeout(t);
+
     $("#staticBackdrop").modal("show");
     $("#modal-body").val("valor cambiado");
     modalbody.innerHTML = `Tiempo: ${cronometro.innerText} <br> Nombre: <input  id="modalName" type="text" />`;
@@ -186,10 +172,8 @@ const getPuntuacion = (lavel, tercer) => {
     pointsavefun(tercer);
   }
 };
-//let puntajes = [];
 
 function pointsavefun(tercer) {
-  //let puntajes = window.localStorage.getItem("points");
   let puntajes = JSON.parse(window.localStorage.getItem(tercer));
   if (puntajes == null) {
     const savepoint = document.getElementById("saveChange");
@@ -200,7 +184,6 @@ function pointsavefun(tercer) {
     });
 
     savepoint.addEventListener("click", (e) => {
-      //e.preventDefault();
       let player = document.getElementById("modalName").value;
       let players = {
         name: player,
@@ -223,7 +206,6 @@ function pointsavefun(tercer) {
       window.location.reload();
     });
     savepoint.addEventListener("click", (e) => {
-      //e.preventDefault();
       let player = document.getElementById("modalName").value;
       let players = {
         name: player,
@@ -239,13 +221,11 @@ function pointsavefun(tercer) {
       window.location.reload();
     });
   }
-  //console.log(savepoint);
 }
 
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
 
-  // getPuntuacion((puntos = 0));
   arrayOpciones(ArrayDificultad);
 }
 
@@ -254,7 +234,6 @@ const arrayOpciones = (array) => {
 
   maxPointLevel(tercer);
 
-  //  let CantidadCartas = cantidadParejas * cantidadParejas;
   crearCarta(cantidadParejas, segunnum, tercer);
 };
 
@@ -282,7 +261,7 @@ const crearCarta = (cantidad, segundoParametro, tercer) => {
     </div>
 </div>`;
   }
-  //inicia cronometro
+
   resetTime();
   timer();
   VoltearCarta(tercer);
@@ -333,10 +312,8 @@ const Arrayde2 = (ar, id, tercer) => {
       dov[lave[0]].classList.remove("flipCard"),
       dov[lave[1]].classList.remove("flipCard");
 
-    //  console.log(lave, valores);
     getPuntuacion(lave, tercer);
-    //    Puntuacion();
-  } else if (valores[0] !== valores[1]) {
+  } else if (valores[0] != valores[1]) {
     setTimeout(function () {
       dov[lave[0]].classList.add("flipCard");
       dov[lave[1]].classList.add("flipCard");
@@ -345,7 +322,7 @@ const Arrayde2 = (ar, id, tercer) => {
     dov[lave[0]].classList.add("flipCard");
   }
 };
-//const Puntuacion = () => {};
+
 const ArrayNumAleatorio = (numeros) => {
   let ArregloAleatorio = [];
   while (ArregloAleatorio.length < numeros) {
@@ -361,20 +338,16 @@ const ArrayNumAleatorio = (numeros) => {
       ArregloAleatorio[ArregloAleatorio.length] = numeroAleatorio;
     }
   }
-  //console.log(ArregloAleatorio);
   return ArregloAleatorio;
 };
 
 //cronometro
-var cronometro = document.getElementById("cronometro");
+const cronometro = document.getElementById("cronometro");
 
-var start = document.getElementById("strt");
-var stop = document.getElementById("stp");
-var reset = document.getElementById("rst");
-var sec = 0;
-var min = 0;
-var hrs = 0;
-var t;
+let sec = 0;
+let min = 0;
+let hrs = 0;
+let t;
 
 function tick() {
   sec++;
@@ -401,17 +374,6 @@ function timer() {
   t = setTimeout(addTime, 1000);
 }
 
-//timer();
-//start.onclick = timer;
-// stop.onclick = function () {
-//   clearTimeout(t);
-// };
-// reset.onclick = function () {
-//   cronometro.textContent = "00:00:00";
-//   // seconds = 0;
-//   // minutes = 0;
-//   // hours = 0;
-// };
 function resetTime() {
   sec = 0;
   min = 0;
@@ -419,18 +381,6 @@ function resetTime() {
   clearTimeout(t);
   cronometro.textContent = "00:00:00";
 }
-
-// let points = JSON.parse(window.localStorage.getItem("facil"));
-// //copiar de forma profunda un array
-// let copiaPoint = JSON.parse(JSON.stringify(points));
-
-// let alto = copiaPoint.map((elem) => {
-//   return (elem.auxTime = parseInt(elem.tiempo.split(":").join("")));
-// });
-
-// let sorted = copiaPoint.sort((a, b) => {
-//   return a.auxTime - b.auxTime;
-// });
 
 function ordenamiento(dificultadKey) {
   let points = JSON.parse(window.localStorage.getItem(dificultadKey));
@@ -473,6 +423,5 @@ function PartidasJugadas() {
   let hard =
     ordenamiento("dificil") == undefined ? 0 : ordenamiento("dificil").length;
 
-  // console.log(easy, medium, hard);
   return (numPartida.innerText = easy + medium + hard);
 }
