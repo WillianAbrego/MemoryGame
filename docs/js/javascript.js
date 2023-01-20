@@ -171,11 +171,13 @@ const getPuntuacion = (lavel, tercer) => {
 
   //score.innerText = result.length / 2;
   score.innerText = result.length / 2;
-
+  // console.log(DiferentesDificultades);
+  // console.log(tercer);
   // ver el momento en que el jugador gana
-  if (score.innerText == 2) {
+
+  if (score.innerText == DiferentesDificultades[tercer][1]) {
     let modalbody = document.getElementById("modalbody");
-    clearTimeout(t);
+
     // console.log(cronometro.innerText); //tiempo
     $("#staticBackdrop").modal("show");
     $("#modal-body").val("valor cambiado");
@@ -207,6 +209,7 @@ function pointsavefun(tercer) {
 
       window.localStorage.setItem(tercer, JSON.stringify([players]));
       $("#staticBackdrop").modal("hide");
+
       resetTime();
       puntosValue.innerText = 0;
       document.getElementById("principal").innerHTML = " ";
@@ -242,7 +245,7 @@ function pointsavefun(tercer) {
 function dificultad() {
   const ArrayDificultad = DiferentesDificultades[this.id];
 
-  getPuntuacion((puntos = 0));
+  // getPuntuacion((puntos = 0));
   arrayOpciones(ArrayDificultad);
 }
 
@@ -280,6 +283,7 @@ const crearCarta = (cantidad, segundoParametro, tercer) => {
 </div>`;
   }
   //inicia cronometro
+  resetTime();
   timer();
   VoltearCarta(tercer);
 };
