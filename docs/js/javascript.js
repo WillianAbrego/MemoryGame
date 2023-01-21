@@ -37,7 +37,7 @@ const historialPartidas = () => {
   document.getElementById("puntosMaxValue").innerText = 0;
   document.getElementById("principal").innerHTML = " ";
   document.getElementById("tablaPoint").innerHTML = `
-  <div id="tablePoints" class="modal-body">
+  <div id="tablePoints" class="modal-body1">
   <button id="facil1" class="btn  btn-outline-primary">Fácil</button>
   <button id="medio2" class="btn btn-outline-secondary">Medio</button>
   <button id="dificil3" class="btn btn-outline-danger">Dificil</button>

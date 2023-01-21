@@ -27,7 +27,7 @@
   </head>
   <body>
     <!-- contenedor -->
-    <div class="container">
+    <div class="container1">
       <div id="numPartidas" class="numPartidas">
         Partida nº: <span id="numPartidasValue"></span>
       </div>
@@ -41,43 +41,58 @@
       <div id="cronometro" class="cronometro">
         <time>00:00:00</time>
       </div>
-      <div id="wrapper" class="wrapper"></div>
     </div>
     <!-- MODAL INICIAL ELEGIR DIFICULTAD -->
-    <div id="modal" class="modalDialog">
-      <div class="modal-content">
-        <div class="modal-header">Seleccione un nivel de dificultad</div>
-        <div id="modal-body" class="modal-body">
-          <div id="dificultadBtn" class="modal-body">
-            <button id="facil" class="btn btn-primary" data-bs-toggle="button">
-              Fácil
-            </button>
-            <button
-              id="medio"
-              class="btn btn-secondary"
-              data-bs-toggle="button"
-            >
-              Medio
-            </button>
-            <button id="dificil" class="btn btn-danger" data-bs-toggle="button">
-              Dificil
-            </button>
-          </div>
+    <div class="container-sm">
+      <div id="modal" class="modalDialog">
+        <div class="modal-content">
+          <div class="modal-header">Seleccione un nivel de dificultad</div>
+          <div id="modal-body" class="modal-body">
+            <div id="dificultadBtn">
+              <button
+                id="facil"
+                class="btn btn-primary mr-3 mt-2 ml-3"
+                data-bs-toggle="button"
+              >
+                Fácil
+              </button>
+              <button
+                id="medio"
+                class="btn btn-secondary mr-3 mt-2 ml-3"
+                data-bs-toggle="button"
+              >
+                Medio
+              </button>
+              <button
+                id="dificil"
+                class="btn btn-danger mr-3 mt-2 ml-3"
+                data-bs-toggle="button"
+              >
+                Dificil
+              </button>
+              <button
+                id="tablaPuntuaciones"
+                class="btn btn-info mr-3 mt-2 ml-3"
+                data-bs-toggle="button"
+              >
+                Ver puntuaciones
+              </button>
+            </div>
 
-          <div id="otherBtn" class="modal-body">
-            <button
-              id="tablaPuntuaciones"
-              class="btn btn-info"
-              data-bs-toggle="button"
-            >
-              Ver tabla de puntuaciones
-            </button>
+            <!-- <div class="modal-body">
+              <button
+                id="tablaPuntuaciones"
+                class="btn btn-info"
+                data-bs-toggle="button"
+              >
+                Ver puntuaciones
+              </button>
+            </div> -->
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container" id="principal"></div>
+    <div class="container1" id="principal"></div>
     <div id="tablaPoint"></div>
 
     <!-- Modal -->
